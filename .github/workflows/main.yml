@@ -18,6 +18,9 @@ jobs:
 
             - name: Install Dependencies
               run: composer install
+            - name: Migrate DB
+              run: |
+                php artisan migrate --force
 
             - name: Limpiar Cache
               run: php artisan config:cache 
@@ -25,9 +28,6 @@ jobs:
             - name: Optimizarlo
               run: php artisan optimize
               
-            - name: Migrate DB
-              run: |
-                php artisan migrate --force
               env:
                 APP_ENV: production
                 DB_CONNECTION: mysql
