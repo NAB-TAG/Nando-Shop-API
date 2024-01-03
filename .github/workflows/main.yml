@@ -25,7 +25,7 @@ jobs:
             - name: Limpiar Cache
               run: php artisan config:cache 
 
-            - name: Optimizarlo con php artisan
+            - name: php artisan optimize
               run: php artisan optimize
               
               env:
