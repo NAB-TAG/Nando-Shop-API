@@ -18,9 +18,9 @@ jobs:
 
             - name: Install Dependencies
               run: composer install
-            - name: Migrate DB
-              run: |
-                php artisan migrate --force
+            # - name: Migrate DB
+            #   run: |
+            #     php artisan migrate --force
 
             - name: Limpiar Cache
               run: php artisan config:cache 
