@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/login/google/callback', function (){
+//     $user = Socialite::driver('google')->stateless()->user();
+//     // return $user;
+//     dd($user);
+// });
+// Route::get('/redirect', function () {
+//     return Socialite::driver('google')->stateless()->redirect();
+// });
