@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://nandoshop-api.com:3000'],
+    'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => ['*localhost*'],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
