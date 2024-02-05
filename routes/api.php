@@ -44,4 +44,7 @@ Route::get('/prueba', function () {
 
 Route::get('auth', [AuthController::class, 'redirectToAuth']);
 Route::get('auth/callback', [AuthController::class, 'handleAuthCallback']);
+// Route::group(['middleware' => 'cors'], function () {
+// });
 Route::get('cookie', [AuthController::class, 'verificarCookie']);
+Route::get('user', [AuthController::class, 'user']);

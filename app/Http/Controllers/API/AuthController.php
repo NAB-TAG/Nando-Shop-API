@@ -7,10 +7,16 @@ use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
+    public function __construct(  )
+    {
+        
+    }
     public function redirectToAuth(): JsonResponse
     {
         return response()->json([
@@ -45,19 +51,14 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         
         return response()->json([
-            'user' => $user,
-            'token_type' => 'Bearer',
-        ])->withCookie(cookie('access_token', $token, 60, null, null, true, true));
+            'message' => 'Seras redireccionado Ahora mismo',
+        ])->withCookie(cookie('auth_token', $token, 60, null, null, true, false));
     }
-    public function verificarCookie(Request $request)
-    {
-        // Verificar si la cookie está presente en la solicitud
-        if ($request->hasCookie('access_token')) {
-            // La cookie existe
-            return response()->json(['mensaje' => 'La cookie existe']);
-        } else {
-            // La cookie no existe
-            return response()->json(['mensaje' => 'La cookie no existe']);
-        }
+    
+
+
+    public function user(){
+        $user = auth('sanctum')->user();
+        return $user;
     }
 }
