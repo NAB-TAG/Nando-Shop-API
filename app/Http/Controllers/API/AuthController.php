@@ -28,8 +28,7 @@ class AuthController extends Controller
     }
 
     public function handleAuthCallback(): JsonResponse
-    {
-        
+    {   
         try {
             /** @var SocialiteUser $socialiteUser */
             $socialiteUser = Socialite::driver('google')->stateless()->user();
