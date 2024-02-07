@@ -53,7 +53,8 @@ class AuthController extends Controller
         
         return response()->json([
             'message' => 'Seras redireccionado Ahora mismo',
-        ])->withCookie(Cookie::make('auth_token',$token, 60, null, null, true,false,false,'None'));
+        ])->withCookie(Cookie::make('auth_token',$token, 60, null, null, true, true,false,'None'));
+        
     }
     
 
