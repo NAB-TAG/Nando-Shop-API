@@ -59,8 +59,9 @@ class AuthController extends Controller
     
 
 
-    public function user(){
-        $user = auth('sanctum')->user();
-        return $user;
+    public function user(Request $request){
+        // $user = auth('sanctum')->user();
+        $cookie = $request->cookies();
+        return $cookie;
     }
 }
