@@ -53,8 +53,8 @@ class AuthController extends Controller
         $csrf_token = csrf_token();
         return response()->json([
             'message' => 'Seras redireccionado Ahora mismo',
-        ])->withCookie(Cookie::make('auth_token',$token, 60))
-        ->withCookie(Cookie::make('csrf_token',$csrf_token, 60));
+        ])->withCookie(Cookie::make('auth_token',$token, 60, null,null,null,true,false,'None'))
+        ->withCookie(Cookie::make('csrf_token',$csrf_token, 60, null,null,null,true,false,'None'));
         
     }
     
