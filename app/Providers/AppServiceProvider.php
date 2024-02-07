@@ -20,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Cookie::setDefaultSameSite('None'); 
+        // Cookie::setDefaultSameSite('None'); 
     }
 }
