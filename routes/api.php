@@ -46,7 +46,7 @@ Route::get('/prueba', function () {
 //         return ["Esta validado"];
 //     });
 // });
-Route::get('user', [AuthController::class, 'user']);
+Route::post('user', [AuthController::class, 'user']);
 Route::get('auth', [AuthController::class, 'redirectToAuth']);
 Route::get('auth/callback', [AuthController::class, 'handleAuthCallback']);
 // Route::group(['middleware' => 'cors'], function () {
