@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,12 +42,12 @@ Route::get('/prueba', function () {
 //     return ["no tan perfecto"];
 // });
 
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::get('user', function () {
-//         return ["Esta validado"];
-//     });
-// });
-Route::post('user', [AuthController::class, 'user']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user', function () {
+        return ["Esta validado"];
+    });
+});
+// Route::post('user', [AuthController::class, 'user']);
 Route::get('auth', [AuthController::class, 'redirectToAuth']);
 Route::get('auth/callback', [AuthController::class, 'handleAuthCallback']);
 // Route::group(['middleware' => 'cors'], function () {
