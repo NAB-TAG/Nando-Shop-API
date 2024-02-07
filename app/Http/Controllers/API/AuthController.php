@@ -53,7 +53,7 @@ class AuthController extends Controller
         
         return response()->json([
             'message' => 'Seras redireccionado Ahora mismo',
-        ])->withCookie(cookie('auth_token', $token, 60, null, null, true, false))
+        ])->withCookie(cookie('auth_token', $token, 60, null, null, true, false, false, 'nando-shop.vercel.app'))
         ->withCookie(cookie('access_token', $token, 60, null, null, true, true));
     }
     
