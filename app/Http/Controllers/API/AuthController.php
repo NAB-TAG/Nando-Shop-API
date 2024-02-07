@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     public function handleAuthCallback(): JsonResponse
     {   
-        
+
         try {
             /** @var SocialiteUser $socialiteUser */
             $socialiteUser = Socialite::driver('google')->stateless()->user();
@@ -53,7 +53,8 @@ class AuthController extends Controller
         
         return response()->json([
             'message' => 'Seras redireccionado Ahora mismo',
-        ])->withCookie(cookie('auth_token', $token, 60, null, null, true, false));
+        ])->withCookie(cookie('auth_token', $token, 60, null, null, true, false))
+        ->withCookie(cookie('access_token', $token, 60, null, null, true, true));
     }
     
 
