@@ -41,10 +41,15 @@ Route::get('/prueba', function () {
 //     return ["no tan perfecto"];
 // });
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user', function () {
+        return ["Esta validado"];
+    });
+})->middleware('web');
 
 Route::get('auth', [AuthController::class, 'redirectToAuth']);
 Route::get('auth/callback', [AuthController::class, 'handleAuthCallback']);
 // Route::group(['middleware' => 'cors'], function () {
 // });
 Route::get('cookie', [AuthController::class, 'verificarCookie']);
-Route::get('user', [AuthController::class, 'user']);
+// Route::get('user', [AuthController::class, 'user']);
