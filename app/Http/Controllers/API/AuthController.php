@@ -50,10 +50,11 @@ class AuthController extends Controller
                 ]
             );
         $token = $user->createToken('auth_token')->plainTextToken;
-        
+        $csrf_token = csrf_token();
         return response()->json([
             'message' => 'Seras redireccionado Ahora mismo',
-        ])->withCookie(Cookie::make('auth_token',$token, 60));
+        ])->withCookie(Cookie::make('auth_token',$token, 60))
+        ->withCookie(Cookie::make('csrf_token',$csrf_token, 60));
         
     }
     
