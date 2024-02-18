@@ -72,49 +72,49 @@ class AuthController extends Controller
         //
     }
 
-    // public function redirectToAuth(): JsonResponse
-    // {
-    //     return response()->json([
-    //         'url' => Socialite::driver('google')
-    //                      ->stateless()
-    //                      ->redirect()
-    //                      ->getTargetUrl(),
-    //     ]);
-    // }
+    public function redirectToAuth(): JsonResponse
+    {
+        return response()->json([
+            'url' => Socialite::driver('google')
+                         ->stateless()
+                         ->redirect()
+                         ->getTargetUrl(),
+        ]);
+    }
 
 
-    // public function handleAuthCallback(): JsonResponse
-    // {   
+    public function handleAuthCallback(): JsonResponse
+    {   
 
-    //     try {
-    //         /** @var SocialiteUser $socialiteUser */
-    //         $socialiteUser = Socialite::driver('google')->stateless()->user();
-    //     } catch (ClientException $e) {
-    //         return response()->json(['error' => 'Invalid credentials provided.'], 422);
-    //     }
-    //     /** @var User $user */
-    //     $user = User::query()
-    //         ->firstOrCreate(
-    //             [
-    //                 'email' => $socialiteUser->getEmail(),
-    //             ],
-    //             [
-    //                 'email_verified_at' => now(),
-    //                 'name' => $socialiteUser->getName(),
-    //                 'google_id' => $socialiteUser->id,
-    //                 'avatar' => $socialiteUser->getAvatar(),
-    //             ]
-    //         );
-    //     $token = $user->createToken('auth_token')->plainTextToken;
-    //     $csrf_token = csrf_token();
-    //     return response()->json([
-    //         'message' => 'Seras redireccionado Ahora mismo',
-    //         'auth_token' => $token,
-    //         'csrf_token' => $csrf_token
-    //     ])->withCookie(Cookie::make('auth_token',$token, 60, null,null,null,true,false,'None'))
-    //     ->withCookie(Cookie::make('csrf_token',$csrf_token, 60, null,null,null,true,false,'None'));
+        try {
+            /** @var SocialiteUser $socialiteUser */
+            $socialiteUser = Socialite::driver('google')->stateless()->user();
+        } catch (ClientException $e) {
+            return response()->json(['error' => 'Invalid credentials provided.'], 422);
+        }
+        /** @var User $user */
+        $user = User::query()
+            ->firstOrCreate(
+                [
+                    'email' => $socialiteUser->getEmail(),
+                ],
+                [
+                    'email_verified_at' => now(),
+                    'name' => $socialiteUser->getName(),
+                    'google_id' => $socialiteUser->id,
+                    'avatar' => $socialiteUser->getAvatar(),
+                ]
+            );
+        $token = $user->createToken('auth_token')->plainTextToken;
+        $csrf_token = csrf_token();
+        return response()->json([
+            'message' => 'Seras redireccionado Ahora mismo',
+            'auth_token' => $token,
+            'csrf_token' => $csrf_token
+        ])->withCookie(Cookie::make('auth_token',$token, 60, null,null,null,true,false,'None'))
+        ->withCookie(Cookie::make('csrf_token',$csrf_token, 60, null,null,null,true,false,'None'));
         
-    // }
+    }
     
 
 
