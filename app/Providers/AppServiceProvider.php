@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Cookie;
+use App\Contracts\AuthValidatorInterface;
+use App\Validators\AuthValidator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            AuthValidatorInterface::class,
+            AuthValidator::class,
+        );
     }
 
     /**
