@@ -5,12 +5,12 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Validators\AuthValidator;
 use Illuminate\Http\Request;
-// use App\Models\User;
-// use GuzzleHttp\Exception\ClientException;
-// use Illuminate\Http\JsonResponse;
-// use Illuminate\Support\Facades\Cookie;
-// use Laravel\Socialite\Facades\Socialite;
-// use App\Services\AuthService;
+use App\Models\User;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cookie;
+use Laravel\Socialite\Facades\Socialite;
+
 class AuthController extends Controller
 {
     private $authValidator;
