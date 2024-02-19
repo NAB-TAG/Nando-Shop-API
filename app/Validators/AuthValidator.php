@@ -11,16 +11,23 @@ class AuthValidator implements AuthValidatorInterface
     public function validate(array $data): Validator
     {
         $rules = [
-            'email' => ['required']
+            'email' => ['unique:users']
         ];
 
         $messages = [
-            'email.required' => 'El email es requerido'
+            'email.unique' => 'El email que ingresaste ya existe en NandoShop',
         ];
 
         // Accedemos a la fachada de Validator
         return \Validator::make($data, $rules, $messages);
     }
+
+
+
+
+
+
+
 
     // public function validateLogin(array $data): Validator
     // {
