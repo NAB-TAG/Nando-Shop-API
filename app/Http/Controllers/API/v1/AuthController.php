@@ -3,20 +3,25 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
-use App\Validators\AuthValidator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\JsonResponse;
+use App\Validators\AuthValidator;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
+
+use App\Services\v1\AuthService;
 
 class AuthController extends Controller
 {
     private $authValidator;
+    private $authService;
 
-    public function __construct( AuthValidator $authValidator ){
+    public function __construct( AuthValidator $authValidator, AuthService $authService ){
         $this->authValidator = $authValidator;
+        $this->authService = $authService;
+        
     }
     /**
      * Display a listing of the resource.
@@ -29,15 +34,19 @@ class AuthController extends Controller
     /**
      * Crea un usuario.
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
+        // Validacion de datos
         $validationResults = $this->authValidator->validate( $request->all() );
 
         if( $validationResults->fails() ):
             return response()->json(["error", "No te pudiste registrar", $validationResults->errors()->first()], 422);
         endif;
 
-        return ["No hubo problemas en la validacion"];
+        // Crea un usuario
+        $response = $this->authService->store( $request->all() );
+
+        return $response;
     }
 
     /**
