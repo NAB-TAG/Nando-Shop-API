@@ -49,6 +49,11 @@ class AuthController extends Controller
         return $response;
     }
 
+    public function csrf()
+    {
+        $token = csrf_token();
+        return "s";
+    }
     /**
      * Display the specified resource.
      */
